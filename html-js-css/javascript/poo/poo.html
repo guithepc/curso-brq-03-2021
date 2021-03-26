@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function fibonacci() {
+            var termo = parseInt(document.getElementById('numero').value);
+            var resposta = document.getElementById('resposta');
+            var penultimo = 0,
+                ultimo = 1;
+            var numero;
+
+            if (termo <= 2)
+                numero = termo - 1;
+            else {
+                count = 3;
+                while (count <= termo) {
+                    numero = ultimo + penultimo;
+                    penultimo = ultimo;
+                    ultimo = numero;
+                    document.write(count);
+                    document.write(resposta);
+                    count++;
+                    resposta.innerHTML = numero;
+
+
+                }
+            }
+
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    Exibir até o termo: <input id="numero" type="number"> <br />
+    <button onclick="fibonacci()">Exibir</button><br />
+    <div id='resposta'></div>
+
+
+</body>
+
+</html>

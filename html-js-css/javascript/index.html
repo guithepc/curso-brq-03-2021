@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function Calcular() {
+            var massa = document.getElementById("cpMassa").value;
+            var altura = document.getElementById("cpAltura").value;
+            var tempo = document.getElementById("cpTempo").value;
+
+            var cavalos = massa * altura / tempo / 745.688;
+
+            document.getElementById("resposta").innerHTML = Math.ceil(cavalos);
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>
+        Cálculo dos cavalos
+    </h1>
+
+    <form>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <td>Massa</td>
+                <td><input type="number" step="20" id="cpMassa"></td>
+            </tr>
+
+            <tr>
+                <td>Altura</td>
+                <td><input type="number" step="20" id="cpAltura"></td>
+            </tr>
+            <tr>
+                <td>Tempo</td>
+                <td><input type="number" step="20" id="cpTempo"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" value="Calcular" onclick="Calcular()">
+                </td>
+
+            </tr>
+
+
+
+        </table>
+    </form>
+    <p id="resposta"></p>
+
+</body>
+
+</html>

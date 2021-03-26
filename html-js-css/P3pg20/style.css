@@ -1,0 +1,23 @@
+    img {
+        max-width: 600px;
+        max-height: 600px;
+        width: auto;
+        height: auto;
+        position: absolute;
+        left: 100px;
+        top: 450px;
+    }
+    
+    h1 {
+        text-align: center;
+        color: rgb(255, 255, 255);
+        background-color: slategray;
+    }
+    
+    #formulario {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }

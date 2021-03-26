@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>meu primeiro Javascript</title>
+
+    <style type="text/css" media="all">
+        body {
+            background-color: tomato;
+        }
+        
+        h1 {
+            color: maroon;
+            margin-left: 40px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function calcular() {
+            var numero = document.getElementById("campoNumero").value;
+            mostraTabuada(numero);
+        }
+
+        function mostraTabuada(n) {
+            var cont = 1;
+            var tab;
+
+            document.getElementById("resposta").innerHTML = '';
+
+            while (cont <= 20) {
+                tab = n * cont;
+                document.getElementById("resposta").innerHTML += (n + ' x ' + cont + ' = ' + tab + '</br>');
+                cont++;
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Tabuada da Multiplicação</h1>
+
+    <form>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <td>Número</td>
+                <td><input type="number" id="campoNumero"></td>
+            </tr>
+        </table>
+        </br>
+        <input type="button" value="calcular" onclick="calcular()">
+    </form>
+
+    </br>
+    <span id="resposta">... a sua tabuada aparecerá aqui ...</span>
+
+</body>
+
+</html>

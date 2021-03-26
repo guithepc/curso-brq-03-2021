@@ -1,0 +1,58 @@
+h1 {
+    color: aqua;
+    text-align: center;
+}
+
+#h1primeiro {
+    /* ID DECLARATION  */
+    color: white;
+}
+
+.banana {
+    /*CLASS DECLARATION*/
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(195, 246, 199);
+    background-color: #3b3b3b;
+}
+
+body {
+    background: url(java.jpg);
+    background-color: blueviolet;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#divesquerda {
+    background: white;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
+    column-gap: 40px;
+    /* Column style property */
+    -webkit-column-rule-style: solid;
+    -moz-column-rule-style: solid;
+    column-rule-style: solid;
+}
+
+#meio {
+    color: white;
+    position: absolute;
+    top: 563px;
+    left: 400px;
+}
+
+#direita {
+    color: white;
+    position: absolute;
+    top: 563px;
+    left: 700px;
+}
+
+h3 {
+    color: white;
+}
