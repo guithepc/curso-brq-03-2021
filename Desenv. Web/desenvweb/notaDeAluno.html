@@ -1,0 +1,69 @@
+<html>
+
+<head>
+	<title>Minha Primeira Classe</title>
+	<script type="text/javascript" src="AlunoDisciplina.js"></script>
+	<script type="text/javascript">
+		function calcularMedias(){
+			var idAluno = document.getElementById('campoIdAluno').value;
+			var idDisciplina = document.getElementById('campoIdDisciplina').value;
+			
+			// instanciar o objeto da classe AlunoDisciplina
+			var aluno = new AlunoDisciplina(idAluno,idDisciplina);
+			
+		    var notaB1 = parseFloat(document.getElementById('campoNotaB1').value);	
+		    var notaB2 = parseFloat(document.getElementById('campoNotaB2').value);	
+			
+			// setando os atributos de notas
+			aluno.setNotaB1(notaB1);
+			aluno.setNotaB2(notaB2);
+			
+			var mediaAritmetica = aluno.mediaAritmetica();
+			var mediaPonderada = aluno.mediaPonderada();
+
+			document.getElementById('resposta').innerHTML = 'Aluno = '               +  
+															 aluno.getIdAluno()      +  '</br>' +
+															'Disciplina = '          + 
+															 aluno.getIdDisciplina() +  '</br>' +
+															'Media Aritmética = '    + 
+			                                                 mediaAritmetica         +  '</br>' +
+															'Media Ponderada = '     + 
+			                                                 mediaPonderada;
+		}
+	</script>
+</head>
+
+<body>
+
+	<h1>Aluno e Disciplina</h1>
+
+	<form>
+		<table border="1" cellpadding="5" cellspacing="0">
+			<tr>
+				<td>Id Aluno</td>
+				<td><input type="number" id="campoIdAluno"></td>
+			</tr>
+			<tr>
+				<td>Id Disciplina</td>
+				<td><input type="number" id="campoIdDisciplina"></td>
+			</tr>
+			<tr>
+				<td>Nota B1</td>
+				<td><input type="number" step="0.1" id="campoNotaB1"></td>
+			</tr>
+			<tr>
+				<td>Nota B2</td>
+				<td><input type="number" step="0.1" id="campoNotaB2"></td>
+			</tr>
+			
+		</table>
+		</br>
+		<input type="button" value="calcular" onclick="calcularMedias()">
+	</form>
+
+	</br>
+	<span id="resposta">... aqui aparecerão as médias ...</span>
+
+</body>
+
+</html>

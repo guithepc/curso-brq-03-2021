@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<title>Validação</title>
+		<script type="text/javascript">
+			function validarFormulario(){
+				formularioOK = true;
+				var x = document.getElementById("inpExemplo").value;
+
+				var y = document.getElementById("senhaExemplo").value;
+
+				if (x == null || x ==""){
+					document.getElementById("spanNome").innerHTML="Preenchimento obrigatório";
+					formularioOK = false;
+				}
+
+				if (y == null || y =="" || y.length < 8){
+					document.getElementById("spanSenha").innerHTML="Escolha uma senha que atenda os requisitos: Mínimo de 8 caractéres.";
+					formularioOK = false;
+				}
+
+				
+				var z = document.getElementById("emailExemplo").value; ;
+				var atpos = z.indexOf("@");
+				var dotpos = z.lastIndexOf(".");
+				if (atpos< 1 || dotpos<atpos + 2 || dotpos + 2 >= z.length || z.indexOf("@@") || z.indexOf(" ") || z.indexOf("..")) {
+					document.getElementById("emailSpan").innerHTML="Email inválido";
+					formularioOK = false;
+				}
+
+				return formularioOK;
+
+			}
+        
+		</script>
+	</head>
+	<body>
+		<h1>Cadastro de Colaborador</h1>
+	
+		<form onsubmit="return validarFormulario()">
+			<table>
+				<tr>
+					<td>
+						Nome
+					</td>
+					<td>
+						<input type="text" id="inpExemplo">
+						<span id="spanNome"></span>
+					</td>
+					
+				</tr>
+
+				<tr>
+					<td>
+						Email
+					</td>
+
+					<td>
+						<input type="text" id="emailExemplo">
+						<span id="emailSpan"></span>
+					</td>
+
+					
+				</tr>
+
+				<tr>
+					<td>
+						Senha
+					</td>
+
+					<td>
+						<input type="password" id="senhaExemplo">
+						<span id="spanSenha"></span>
+					</td>
+
+					
+				</tr>
+
+				
+			</table>
+			<input type="submit" value="Enviar">
+		</form>
+	
+	</body>
+<html>

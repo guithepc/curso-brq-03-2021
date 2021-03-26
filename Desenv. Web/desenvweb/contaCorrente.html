@@ -1,0 +1,63 @@
+<html>
+
+<head>
+	<title>GR Cannis Majoris</title>
+	<script type="text/javascript" src="conta.js"></script>
+	<script type="text/javascript">
+		function calcularSaldo(){
+			var numCC = document.getElementById('campoNumCC').value;
+			
+			// instanciar o objeto da classe ContaCorrente
+			var cc = new ContaCorrente(numCC);
+			
+		    var saldoCC       = parseFloat(document.getElementById('campoSaldoCC').value);	
+		    var valorDeposito = parseFloat(document.getElementById('campoDepositar').value);	
+		    var valorSacar    = parseFloat(document.getElementById('campoSacar').value);	
+			
+			// setando os atributos de notas
+			cc.setSaldoCC(saldoCC);
+			cc.depositar(valorDeposito);
+			cc.sacar(valorSacar);
+
+			document.getElementById('resposta').innerHTML = 'Conta Corrente = ' +  
+															 cc.getNumCC()      +  '</br>' +
+															'Saldo = '          + 
+															 cc.getSaldoCC();
+		}
+	</script>
+</head>
+
+<body>
+
+<h1>Banco do Polvo</h1>
+
+<form>
+	<table border="1" cellpadding="5" cellspacing="0">
+		<tr>
+			<td>Número Conta Corrente</td>
+			<td><input type="number" id="campoNumCC"></td>
+		</tr>
+		<tr>
+			<td>Saldo Conta Corrente</td>
+			<td><input type="number" id="campoSaldoCC"></td>
+		</tr>
+		<tr>
+			<td>Depositar</td>
+			<td><input type="number" id="campoDepositar"></td>
+		</tr>
+		<tr>
+			<td>Sacar</td>
+			<td><input type="number" id="campoSacar"></td>
+		</tr>
+		
+	</table>
+	</br>
+	<input type="button" value="calcular" onclick="calcularSaldo()">
+</form>
+
+	</br>
+	<span id="resposta">... aqui aparecerá o saldo atual ...</span>
+
+</body>
+
+</html>

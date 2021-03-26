@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        var contaCorrente = new Object(); //referencia & adição de membros
+
+        contaCorrente.numero = 66516;
+        contaCorrente.agencia = 001;
+        contaCorrente.nome = 'Guilherme Pessoa Correia';
+        contaCorrente.saldo = 433.444;
+
+        document.write('<h3> Correntista </h3>')
+        for(x in contaCorrente){
+            document.write(x + ' : '  + contaCorrente[x] + '</br>')
+        }
+        document.write('<h3> Funcionario </h3>')
+
+
+        var funcionario = { //atributo valor atributo valor
+            id:1212,
+            nome:'Pedro Albuquerque',
+            idade: 23
+        }
+
+        for(x in funcionario){
+            document.write(x + ' : '  + funcionario[x] + '</br>')
+        }
+
+
+        document.write('<h3> Carro </h3>')
+
+        function Carro(modelo, marca, ano, motor){
+            this.modelo = modelo;
+            this.marca = marca;
+            this.ano = ano;
+            this.motor = motor;
+        }
+
+
+        //construtor
+
+        var car = new Carro ("C3", "Gol", 2020, 3.0);
+        var car1 = new Carro ("Brabao", "Camaro", 2050, 70.0);
+        for (x in car){
+            document.write(x + ' : ' + car[x] + '</br>');
+        }
+        document.write('<h4>Próximo carro</h4>')
+        for (x in car1){
+            document.write(x + ' : ' + car1[x] + '</br>');
+        }
+        
+        //POO
+
+        document.write('<h3> Produto </h3>')
+
+        class Produto{
+            constructor(id, descricao, preco, estoque){
+                this.id = id;
+                this.descricao = descricao;
+                this.preco = preco;
+                this.estoque = estoque;
+            }
+            
+            
+
+        }
+        var p1 = new Produto() //(1, 'caneta', 4, 300);
+
+        p1.descricao="Muito brabo";
+        p1.preco = 10;
+        p1.id = 01;
+        p1.estoque = 0;
+
+        for (x in p1){
+            document.write(x + ' : ' + p1[x] + '</br>');
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        var produto = {
+            id:1,
+            descricao: 'bota',
+            preco: 3,
+            unidades: 10
+        }
+
+        function calc(lucro){
+            return this.preco * this.unidades * (lucro / 100 +1);
+        }
+
+        produto.valorEstoque = calc;
+
+        document.write(produto.valorEstoque(0) + '</br>');
+        document.write(produto.valorEstoque(10) + '</br>');
+        document.write(produto.valorEstoque(30) + '</br>');
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
