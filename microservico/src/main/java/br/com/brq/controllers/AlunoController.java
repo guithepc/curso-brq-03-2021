@@ -3,42 +3,40 @@ package br.com.brq.controllers;
 import java.util.ArrayList;
 
 import javax.websocket.server.PathParam;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.brq.models.AlunoModel;
+import br.com.brq.services.AlunoService;
+
 
 @RestController
 public class AlunoController {
 	
+	
 	private ArrayList<AlunoModel> alunos = new ArrayList<>();
+	
+	@Autowired
+	private AlunoService alunoService; //= new AlunoService()
 	
 	@GetMapping("alunos") //endpoint
 	public ArrayList<AlunoModel> getAll(){
 		return this.alunos;
 	}
 	
-	@GetMapping("alunos")
-	public ArrayList<AlunoModel> getOne(){
-		return this.alunos;
-	}
+	
 	
 	@GetMapping("alunos/{matricula}") //pegar o indice da variavel matricula
-	public AlunoModel getbyMatricula(@PathVariable int matricula) {
+	public AlunoModel getbyMatricula(@PathVariable int matricula, @RequestParam(value = "q", defaultValue = "") String query) {
 		
-		AlunoModel response = null; //criei variavel response
+		AlunoModel response = this.alunoService.findByMatricula(alunos, matricula); //criei variavel response
 		
-		for (AlunoModel alunoModel : alunos) {
-			if (alunoModel.getMatricula() == matricula) {
-				response = alunoModel;
-			}
-		}	
 		return response;
 	}
 	
@@ -51,6 +49,8 @@ public class AlunoController {
 		
 		
 	}
+	
+	
 	
 	@PatchMapping("alunos/{matricula}") 
 	public AlunoModel update(@RequestBody AlunoModel novoAluno, @PathVariable int matricula) {//path pra alterar
@@ -71,6 +71,10 @@ public class AlunoController {
 		}
 		return response;
 	}
+	
+	
+	
+	
 	
 	@DeleteMapping("alunos/{matricula}")
 	public void delete(@PathVariable int matricula) {
