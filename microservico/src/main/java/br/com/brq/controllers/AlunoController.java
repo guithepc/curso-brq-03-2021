@@ -1,8 +1,7 @@
 package br.com.brq.controllers;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,79 +9,47 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import br.com.brq.models.AlunoModel;
-import br.com.brq.services.AlunoService;
 
+import br.com.brq.services.AlunoModelService;
 
+@RequestMapping("alunos")
 @RestController
+
 public class AlunoController {
 	
-	
-	private ArrayList<AlunoModel> alunos = new ArrayList<>();
-	
 	@Autowired
-	private AlunoService alunoService; //= new AlunoService()
+	private AlunoModelService alunoModelService;
 	
-	@GetMapping("alunos") //endpoint
-	public ArrayList<AlunoModel> getAll(){
-		return this.alunos;
+	@GetMapping("")
+	public List <AlunoModel> findAll(){
+		return this.alunoModelService.findAll();
 	}
 	
 	
-	
-	@GetMapping("alunos/{matricula}") //pegar o indice da variavel matricula
-	public AlunoModel getbyMatricula(@PathVariable int matricula, @RequestParam(value = "q", defaultValue = "") String query) {
-		
-		AlunoModel response = this.alunoService.findByMatricula(alunos, matricula); //criei variavel response
-		
-		return response;
+	@GetMapping("/{matriculaaluno}")
+	public AlunoModel findOne (@PathVariable int matriculaaluno) {
+		return this.alunoModelService.findOne(matriculaaluno);
 	}
 	
-	@PostMapping("alunos")
-	public AlunoModel save(@RequestBody AlunoModel novoAluno) {
-		System.out.println(novoAluno);
-		this.alunos.add(novoAluno);
-		return novoAluno;
-		
-		
-		
+	@PostMapping("")
+	public  AlunoModel save (@RequestBody AlunoModel novoAlunoModel) {
+		return this.alunoModelService.save(novoAlunoModel);
 	}
 	
 	
-	
-	@PatchMapping("alunos/{matricula}") 
-	public AlunoModel update(@RequestBody AlunoModel novoAluno, @PathVariable int matricula) {//path pra alterar
-		
-		AlunoModel response = null;
-		
-		for (AlunoModel aluno : alunos) {	
-			if (aluno.getMatricula() == matricula) {
-				
-				//aluno.setMatricula( novoAluno.getMatricula() );
-				if (novoAluno.getNome() != null)
-					aluno.setNome(novoAluno.getNome() );
-				if (novoAluno.getTurma() != null)
-					aluno.setTurma( novoAluno.getTurma() );
-				
-				response = aluno;
-			}
-		}
-		return response;
+	@PatchMapping("/{matriculaaluno}")
+	public AlunoModel update(@PathVariable Integer matriculaaluno, @RequestBody AlunoModel alterarAlunoModel) {
+		return this.alunoModelService.update(matriculaaluno, alterarAlunoModel);
 	}
 	
-	
-	
-	
-	
-	@DeleteMapping("alunos/{matricula}")
-	public void delete(@PathVariable int matricula) {
-		for(int i =0; i < alunos.size(); i++) {
-			if (alunos.get(i).getMatricula() == matricula) {
-				alunos.remove(i);
-			}
-		}
+	@DeleteMapping("/{matriculaaluno}")
+	public void delete (@PathVariable Integer matriculaaluno) {
+		this.alunoModelService.delete(matriculaaluno);
 	}
 	
 	
