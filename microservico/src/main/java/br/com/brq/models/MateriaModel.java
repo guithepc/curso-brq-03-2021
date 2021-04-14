@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.modelmapper.ModelMapper;
@@ -22,7 +23,8 @@ import lombok.Data;
 @Table(name = "materia")
 public class MateriaModel {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="materia_seq")
+	@SequenceGenerator(name = "materia_seq", sequenceName = "materia_seq", allocationSize = 1)
 	private int id;
 	private String nome;
 	private String professor;

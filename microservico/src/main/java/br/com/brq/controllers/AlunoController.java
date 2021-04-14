@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import br.com.brq.dtos.AlunoDTO;
 import br.com.brq.models.AlunoModel;
 
 import br.com.brq.services.AlunoModelService;
@@ -26,24 +26,29 @@ public class AlunoController {
 	private AlunoModelService alunoModelService;
 	
 	@GetMapping("")
-	public List <AlunoModel> findAll(){
+	public List<AlunoDTO> findAll(){
 		return this.alunoModelService.findAll();
 	}
 	
 	
 	@GetMapping("/{matriculaaluno}")
-	public AlunoModel findOne (@PathVariable int matriculaaluno) {
+	public AlunoDTO findOne (@PathVariable int matriculaaluno) {
 		return this.alunoModelService.findOne(matriculaaluno);
 	}
 	
+	@GetMapping("procurar-por-nome/{nomeBusca}")
+	public List <AlunoDTO> procurarPorNome(@PathVariable String nomeBusca){
+		return this.alunoModelService.procurarPorNome(nomeBusca);
+	}
+	
 	@PostMapping("")
-	public  AlunoModel save (@RequestBody AlunoModel novoAlunoModel) {
+	public  AlunoDTO save (@RequestBody AlunoModel novoAlunoModel) {
 		return this.alunoModelService.save(novoAlunoModel);
 	}
 	
 	
 	@PatchMapping("/{matriculaaluno}")
-	public AlunoModel update(@PathVariable Integer matriculaaluno, @RequestBody AlunoModel alterarAlunoModel) {
+	public AlunoDTO update(@PathVariable Integer matriculaaluno, @RequestBody AlunoModel alterarAlunoModel) {
 		return this.alunoModelService.update(matriculaaluno, alterarAlunoModel);
 	}
 	

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.brq.dtos.EnderecoDTO;
 import br.com.brq.models.EnderecoModel;
 import br.com.brq.services.EnderecoModelService;
 
@@ -23,23 +24,27 @@ public class EnderecoController {
 	private EnderecoModelService enderecoModelService;
 	
 	@GetMapping("")
-	public List<EnderecoModel> findAll(){
+	public List<EnderecoDTO> findAll(){
 		return this.enderecoModelService.findAll();
 	}
 	
 	@GetMapping("{id}")
-	public EnderecoModel findOne (@PathVariable int id) {
+	public EnderecoDTO findOne (@PathVariable int id) {
 		return this.enderecoModelService.findOne(id);
 	}
 	
+	@GetMapping("procurar-por-logradouro/{logradouroBusca}")
+	public List<EnderecoDTO> procurarPorLogradouro (@PathVariable String logradouroBusca){
+		return this.enderecoModelService.procurarPorLogradouro(logradouroBusca);
+	}
 	
 	@PostMapping("")
-	public EnderecoModel save (@RequestBody EnderecoModel novoEnderecoModel) {
+	public EnderecoDTO save (@RequestBody EnderecoModel novoEnderecoModel) {
 		return this.enderecoModelService.save(novoEnderecoModel);
 	}
 	
 	@PatchMapping("{id}")
-	public EnderecoModel update (@PathVariable Integer id, @RequestBody EnderecoModel alterarEnderecoModel) {
+	public EnderecoDTO update (@PathVariable Integer id, @RequestBody EnderecoModel alterarEnderecoModel) {
 		return this.enderecoModelService.update(id, alterarEnderecoModel);
 	}
 	

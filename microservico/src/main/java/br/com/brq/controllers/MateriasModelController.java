@@ -3,6 +3,8 @@ package br.com.brq.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +48,7 @@ public class MateriasModelController {
 	}
 	
 	@PostMapping("")
-	public MateriaDTO save( @RequestBody MateriaModel obj ) {
+	public MateriaDTO save(@Valid @RequestBody MateriaModel obj ) {
 					
 		return this.service.save(obj);		
 	}

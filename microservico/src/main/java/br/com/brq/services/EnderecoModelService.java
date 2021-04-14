@@ -1,11 +1,14 @@
 package br.com.brq.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.brq.dtos.EnderecoDTO;
 import br.com.brq.models.EnderecoModel;
 import br.com.brq.repositories.EnderecoModelRepository;
 
@@ -16,19 +19,32 @@ public class EnderecoModelService {
 	private EnderecoModelRepository enderecoModelRepository;
 	
 	
-	public List<EnderecoModel> findAll(){
-		return this.enderecoModelRepository.findAll();
+	public List<EnderecoDTO> findAll(){
+		List<EnderecoModel> list = this.enderecoModelRepository.findAll();
+		
+		return list.stream()
+	            .map( x -> x.toDto() )
+	            .collect(Collectors.toCollection(ArrayList::new));	
 	}
 	
-	public EnderecoModel findOne(Integer id) {
-		return this.enderecoModelRepository.findById(id).orElseThrow( () -> new RuntimeException ("Erro"));
+	public EnderecoDTO findOne(Integer id) {
+		return this.enderecoModelRepository.findById(id).orElseThrow( () -> new RuntimeException ("Erro")).toDto();
 	}
 	
-	public EnderecoModel save (EnderecoModel novoEnderecoModel) {
-		return this.enderecoModelRepository.save(novoEnderecoModel);
+	public List<EnderecoDTO> procurarPorLogradouro(String logradouro){
+		List<EnderecoModel> list =  this.enderecoModelRepository.findByLogradouroContains(logradouro);
+		return list.stream()
+				.map(x -> x.toDto())
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
 	
-	public EnderecoModel update (Integer id, EnderecoModel alterarEnderecoModel) {
+	public EnderecoDTO save (EnderecoModel novoEnderecoModel) {
+		return this.enderecoModelRepository.save(novoEnderecoModel).toDto();
+	}
+	
+	
+	
+	public EnderecoDTO update (Integer id, EnderecoModel alterarEnderecoModel) {
 		Optional<EnderecoModel> opEnderecoModel = this.enderecoModelRepository.findById(id);
 		
 		if (opEnderecoModel.isPresent()) {
@@ -38,7 +54,7 @@ public class EnderecoModelService {
 			updated.setComplemento(alterarEnderecoModel.getComplemento());
 			updated.setCep(alterarEnderecoModel.getCep());
 			
-			return this.enderecoModelRepository.save(updated);
+			return this.enderecoModelRepository.save(updated).toDto();
 		} else {
 			throw new RuntimeException("Registro não localizado");
 		}

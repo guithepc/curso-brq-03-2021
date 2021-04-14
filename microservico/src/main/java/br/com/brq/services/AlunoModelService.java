@@ -1,11 +1,14 @@
 package br.com.brq.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.brq.dtos.AlunoDTO;
 import br.com.brq.models.AlunoModel;
 import br.com.brq.repositories.AlunoModelRepository;
 
@@ -16,20 +19,34 @@ public class AlunoModelService {
 	@Autowired
 	private AlunoModelRepository alunoModelRepository;
 	
-	public List<AlunoModel> findAll(){
-		return this.alunoModelRepository.findAll();
+	public List<AlunoDTO> findAll(){
+		List<AlunoModel> list = this.alunoModelRepository.findAll();
+		
+		return list.stream()
+	            .map( x -> x.toDto() )
+	            .collect(Collectors.toCollection(ArrayList::new));		
+		
 	}
 	
-	public AlunoModel findOne (Integer matriculaaluno) {
-		return this.alunoModelRepository.findById(matriculaaluno).orElseThrow(() -> new RuntimeException ("Error### Aluno não encontrado"));
+	public AlunoDTO findOne (Integer matriculaaluno) {
+		return this.alunoModelRepository.findById(matriculaaluno).orElseThrow(() -> new RuntimeException ("Error### Aluno não encontrado")).toDto();
 	}
 	
 	
-	public AlunoModel save (AlunoModel novoAlunoModel) {
-		return this.alunoModelRepository.save(novoAlunoModel);
+	public AlunoDTO save (AlunoModel novoAlunoModel) {
+		return this.alunoModelRepository.save(novoAlunoModel).toDto();
 	}
 	
-	public AlunoModel update (Integer matriculaaluno, AlunoModel alterarAlunoModel) {
+	
+	public List<AlunoDTO> procurarPorNome (String nomealuno){
+		List<AlunoModel> list = this.alunoModelRepository.findByNomeContains(nomealuno);
+		
+		return list.stream()
+				.map(x -> x.toDto())
+				.collect(Collectors.toCollection(ArrayList :: new));
+	}
+	
+	public AlunoDTO update (Integer matriculaaluno, AlunoModel alterarAlunoModel) {
 		Optional<AlunoModel> opAlunoModel =  this.alunoModelRepository.findById(matriculaaluno);
 		
 		if (opAlunoModel.isPresent()) {
@@ -37,7 +54,7 @@ public class AlunoModelService {
 			updated.setNomealuno(alterarAlunoModel.getNomealuno());
 			updated.setTurmaaluno(alterarAlunoModel.getTurmaaluno());
 			
-			return this.alunoModelRepository.save(updated);
+			return this.alunoModelRepository.save(updated).toDto();
 		} else {
 			throw new RuntimeException ("Registro não localizado");
 		}

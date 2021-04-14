@@ -12,10 +12,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.modelmapper.ModelMapper;
 
+import br.com.brq.dtos.AlunoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,8 @@ import lombok.NoArgsConstructor;
 public class AlunoModel{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //notação p/ MySQL saber que é autoincrement
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="aluno_seq")
+	@SequenceGenerator(name = "aluno_seq", sequenceName = "aluno_seq", allocationSize = 1)//notação p/ MySQL saber que é autoincrement
 	private Integer matriculaaluno; // aqui sempre deve estar alinhado com o banco de dados
 	
 	private String nomealuno;
@@ -54,6 +57,11 @@ public class AlunoModel{
 			inverseJoinColumns = @JoinColumn(name = "materia_id")// a outra coluna da outra tabela
 			)
 	private List<MateriaModel> materias = new ArrayList<>();
+	
+	public AlunoDTO toDto() {
+		ModelMapper modelMapper   = new ModelMapper();
+		return modelMapper.map(this, AlunoDTO.class);
+	}
 	
 }
 
