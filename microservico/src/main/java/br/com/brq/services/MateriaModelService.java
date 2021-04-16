@@ -6,11 +6,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import java.util.function.Function;
 import org.springframework.stereotype.Service;
 
 
 
 import br.com.brq.dtos.MateriaDTO;
+import br.com.brq.exceptions.ObjetoNaoEncontradoExceptions;
 import br.com.brq.models.MateriaModel;
 import br.com.brq.repositories.MateriaModelRepository;
 
@@ -31,7 +35,7 @@ public class MateriaModelService {
 	
 	public MateriaDTO findOne(int id) {
 		return this.repository.findById(id)
-				.orElseThrow( () -> new RuntimeException("Matéria não encontrada")  ).toDto();
+				.orElseThrow( () -> new ObjetoNaoEncontradoExceptions("Matéria não encontrada")  ).toDto();
 	}
 	
 	public List<MateriaDTO> procurarPorNome(String nome){
@@ -43,11 +47,11 @@ public class MateriaModelService {
 	            .collect(Collectors.toCollection(ArrayList::new));		
 	}
 	
-	public MateriaDTO save(MateriaModel obj) {
-		return this.repository.save(obj).toDto();
+	public MateriaDTO save(MateriaDTO obj) {
+		return this.repository.save(obj.toEntity()).toDto();
 	}
 	
-	public MateriaDTO update(int id, MateriaModel newObj) {
+	public MateriaDTO update(int id, MateriaDTO newObj) {
 				
 		Optional<MateriaModel> optObj = this.repository.findById(id);
 		
@@ -61,7 +65,7 @@ public class MateriaModelService {
 			return this.repository.save(objFromDatabase).toDto();
 		}
 		else {
-			throw new RuntimeException("Matéria não encontrada") ;
+			throw new ObjetoNaoEncontradoExceptions("Matéria não encontrada") ;
 		}
 
 	}
@@ -69,4 +73,32 @@ public class MateriaModelService {
 	public void delete(int id) {
 		this.repository.deleteById(id);
 	}
+	
+	public void deleteMany(int[] ids) {
+		for (int i : ids) {
+			this.repository.deleteById(i);
+		}
+		
+	}	
+	
+	public Page<MateriaDTO> paginacao(int pagina, int registros) {
+		PageRequest pageRequest = PageRequest.of(pagina, registros);
+		
+		Page<MateriaModel> pageModel = this.repository.findAll( pageRequest );
+		
+		Page<MateriaDTO> pageDTO = pageModel.map(
+				new Function<MateriaModel, MateriaDTO>() {
+					public MateriaDTO apply(MateriaModel model) {
+						return model.toDto();
+					}
+				}
+		);
+		
+		return pageDTO;
+		
+	}
+
 }
+
+
+

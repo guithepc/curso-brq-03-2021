@@ -1,8 +1,8 @@
 package br.com.brq.exceptions;
 
-public class ObjetoNaoEncontradoException extends RuntimeException {
+public class ObjetoNaoEncontradoExceptions extends RuntimeException {
 
-	public ObjetoNaoEncontradoException (String mensagem) {
+	public ObjetoNaoEncontradoExceptions (String mensagem) {
 		super(mensagem);
 	}
 }

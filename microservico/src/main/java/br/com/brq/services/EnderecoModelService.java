@@ -3,9 +3,12 @@ package br.com.brq.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.brq.dtos.EnderecoDTO;
@@ -38,13 +41,13 @@ public class EnderecoModelService {
 				.collect(Collectors.toCollection(ArrayList::new));
 	}
 	
-	public EnderecoDTO save (EnderecoModel novoEnderecoModel) {
-		return this.enderecoModelRepository.save(novoEnderecoModel).toDto();
+	public EnderecoDTO save (EnderecoDTO novoEnderecoModel) {
+		return this.enderecoModelRepository.save(novoEnderecoModel.toEntity()).toDto();
 	}
 	
 	
 	
-	public EnderecoDTO update (Integer id, EnderecoModel alterarEnderecoModel) {
+	public EnderecoDTO update (Integer id, EnderecoDTO alterarEnderecoModel) {
 		Optional<EnderecoModel> opEnderecoModel = this.enderecoModelRepository.findById(id);
 		
 		if (opEnderecoModel.isPresent()) {
@@ -68,4 +71,24 @@ public class EnderecoModelService {
 		}
 	}
 	
+	
+	public Page<EnderecoDTO> paginacao(int pagina, int registros){
+		PageRequest pageRequest = PageRequest.of(pagina, registros);
+		
+		Page<EnderecoModel> pageModel = this.enderecoModelRepository.findAll(pageRequest);
+		
+		Page<EnderecoDTO> pageDTO = pageModel.map(
+				new Function<EnderecoModel, EnderecoDTO>(){
+					public EnderecoDTO apply(EnderecoModel model) {
+						return model.toDto();
+					}
+				}
+		);
+		
+		return pageDTO;
+	}
+	
 }
+
+
+

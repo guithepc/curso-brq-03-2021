@@ -3,15 +3,17 @@ package br.com.brq.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.brq.dtos.EscolaDTO;
-import br.com.brq.dtos.MateriaDTO;
+import br.com.brq.exceptions.ObjetoNaoEncontradoExceptions;
 import br.com.brq.models.EscolaModel;
-import br.com.brq.models.MateriaModel;
 import br.com.brq.repositories.EscolaModelRepository;
 
 @Service
@@ -45,22 +47,24 @@ public class EscolaModelServices {
 	            .collect(Collectors.toCollection(ArrayList::new));	
 	}
 	
-	public EscolaDTO save (EscolaModel novoEscolaModel) {
-		return this.escolaModelRepository.save(novoEscolaModel).toDto();
+	public EscolaDTO save (EscolaDTO novoEscolaModel) {
+		return this.escolaModelRepository.save(novoEscolaModel.toEntity()).toDto();
 	}
 	
-	public EscolaDTO update (Integer id, EscolaModel alterarEscolaModel) {
+	public EscolaDTO update (Integer id, EscolaDTO alterarEscolaModel) {
 		Optional<EscolaModel> opEscolaModel = this.escolaModelRepository.findById(id);
 		
 		if (opEscolaModel.isPresent()) {
+			
 			EscolaModel updated = opEscolaModel.get();
+			
 			updated.setNome(alterarEscolaModel.getNome());
 			updated.setTipo_escola(alterarEscolaModel.getTipo_escola());
 			updated.setNumero_salas(alterarEscolaModel.getNumero_salas());
 			
 			return this.escolaModelRepository.save(updated).toDto();
 		} else {
-			throw new RuntimeException ("Registro não localizado");
+			throw new ObjetoNaoEncontradoExceptions ("Registro não localizado");
 
 		}
 	}
@@ -73,6 +77,22 @@ public class EscolaModelServices {
 			// TODO: handle exception
 			throw new RuntimeException ("Erro ao deletar" + e.getMessage());
 		}
+	}
+	
+	public Page<EscolaDTO> paginacao(int pagina, int registros){
+		PageRequest pageRequest = PageRequest.of(pagina, registros);
+		
+		Page<EscolaModel> pageModel = this.escolaModelRepository.findAll(pageRequest);
+		
+		Page<EscolaDTO> pageDTO = pageModel.map(
+				new Function<EscolaModel, EscolaDTO>(){
+					public EscolaDTO apply(EscolaModel model) {
+						return model.toDto();
+					}
+				}
+				
+			);
+		return pageDTO;
 	}
 }
 
