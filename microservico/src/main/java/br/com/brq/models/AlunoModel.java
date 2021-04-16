@@ -3,6 +3,7 @@ package br.com.brq.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,11 +35,14 @@ public class AlunoModel{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator ="aluno_seq")
 	@SequenceGenerator(name = "aluno_seq", sequenceName = "aluno_seq", allocationSize = 1)//notação p/ MySQL saber que é autoincrement
-	private Integer matriculaaluno; // aqui sempre deve estar alinhado com o banco de dados
+	@Column (name = "matricula")
+	private Integer matriculaAluno; // aqui sempre deve estar alinhado com o banco de dados
 	
-	private String nomealuno;
+	@Column( name = "nome" )
+	private String nomeAluno;
 	
-	private String turmaaluno;
+	@Column(name = "turma")
+	private String turmaAluno;
 		
 	@OneToOne(mappedBy = "aluno") //mapeada por "aluno" em endereco - um pra um
 	private EnderecoModel endereco;

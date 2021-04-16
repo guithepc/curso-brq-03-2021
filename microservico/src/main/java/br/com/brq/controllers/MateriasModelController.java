@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.brq.dtos.MateriaDTO;
-import br.com.brq.services.MateriaModelService;
+import br.com.brq.services.MateriaService;
 
 @RequestMapping("materias")
 @RestController
 public class MateriasModelController {
 	
 	@Autowired
-	private MateriaModelService service;
+	private MateriaService service;
 	
 	@GetMapping("")
 	public List<MateriaDTO> findAll(){

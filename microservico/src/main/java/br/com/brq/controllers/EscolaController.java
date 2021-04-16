@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.brq.dtos.EscolaDTO;
 import br.com.brq.models.EscolaModel;
-import br.com.brq.services.EscolaModelServices;
+import br.com.brq.services.EscolaServices;
 
 @RequestMapping("escolas")
 @RestController
 public class EscolaController {
 	
 	@Autowired
-	private EscolaModelServices escolaModelService;
+	private EscolaServices escolaModelService;
 	
 	@GetMapping("")
 	public List <EscolaDTO> findAll(){

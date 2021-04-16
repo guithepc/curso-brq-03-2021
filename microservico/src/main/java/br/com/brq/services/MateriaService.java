@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 import br.com.brq.dtos.MateriaDTO;
 import br.com.brq.exceptions.ObjetoNaoEncontradoExceptions;
 import br.com.brq.models.MateriaModel;
-import br.com.brq.repositories.MateriaModelRepository;
+import br.com.brq.repositories.MateriaRepository;
 
 @Service
-public class MateriaModelService {
+public class MateriaService {
 	
 	@Autowired
-	private MateriaModelRepository repository;
+	private MateriaRepository repository;
 	
 	public List<MateriaDTO> findAll(){
 		

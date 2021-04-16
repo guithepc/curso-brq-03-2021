@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.brq.dtos.EnderecoDTO;
-import br.com.brq.services.EnderecoModelService;
+import br.com.brq.services.EnderecoService;
 
 @RequestMapping("enderecos")
 @RestController
 public class EnderecoController {
 
 	@Autowired
-	private EnderecoModelService enderecoModelService;
+	private EnderecoService enderecoModelService;
 	
 	@GetMapping("")
 	public List<EnderecoDTO> findAll(){

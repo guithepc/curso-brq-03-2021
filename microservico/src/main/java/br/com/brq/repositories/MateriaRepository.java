@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import br.com.brq.models.MateriaModel;
 
-public interface MateriaModelRepository extends JpaRepository<MateriaModel, Integer>{
+public interface MateriaRepository extends JpaRepository<MateriaModel, Integer>{
 	
 	
 	@Query (value = "SELECT * FROM materia where nome like %:nome%", nativeQuery = true)

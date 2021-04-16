@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service;
 import br.com.brq.dtos.EscolaDTO;
 import br.com.brq.exceptions.ObjetoNaoEncontradoExceptions;
 import br.com.brq.models.EscolaModel;
-import br.com.brq.repositories.EscolaModelRepository;
+import br.com.brq.repositories.EscolaRepository;
 
 @Service
-public class EscolaModelServices {
+public class EscolaServices {
 	
 	
 	@Autowired
-	private EscolaModelRepository escolaModelRepository;
+	private EscolaRepository escolaModelRepository;
 
 	public List<EscolaDTO> findAll(){
 		

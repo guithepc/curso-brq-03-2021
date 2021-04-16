@@ -10,12 +10,12 @@ import lombok.Data;
 @Data
 public class AlunoDTO {
 
-	private int matriculaaluno;
+	private int matriculaAluno;
 	@NotNull
-	private String nomealuno;
+	private String nomeAluno;
 	
 	@NotNull
-	private String turmaaluno;
+	private String turmaAluno;
 	
 	private EnderecoDTO endereco;
 	

@@ -20,21 +20,21 @@ import br.com.brq.models.AlunoMateriaModel;
 import br.com.brq.models.AlunoModel;
 import br.com.brq.models.MateriaModel;
 import br.com.brq.repositories.AlunoMateriaRepository;
-import br.com.brq.repositories.AlunoModelRepository;
-import br.com.brq.repositories.EnderecoModelRepository;
+import br.com.brq.repositories.AlunoRepository;
+import br.com.brq.repositories.EnderecoRepository;
 
 @Service
-public class AlunoModelService {
+public class AlunoService {
 	
 	
 	@Autowired
-	private AlunoModelRepository alunoModelRepository;
+	private AlunoRepository alunoModelRepository;
 	
 	@Autowired
 	private AlunoMateriaRepository alunoMateriaRepository;
 	
 	@Autowired
-	private EnderecoModelRepository enderecoRepository;
+	private EnderecoRepository enderecoRepository;
 	
 	public List<AlunoDTO> findAll(){
 		List<AlunoModel> list = this.alunoModelRepository.findAll();
@@ -56,7 +56,7 @@ public class AlunoModelService {
 	
 	
 	public List<AlunoDTO> procurarPorNome (String nomealuno){
-		List<AlunoModel> list = this.alunoModelRepository.findByNomeContains(nomealuno);
+		List<AlunoModel> list = this.alunoModelRepository.findByNomeAlunoContains(nomealuno);
 		
 		return list.stream()
 				.map(x -> x.toDto())
@@ -68,8 +68,8 @@ public class AlunoModelService {
 		
 		if (opAlunoModel.isPresent()) {
 			AlunoModel updated = opAlunoModel.get();
-			updated.setNomealuno(alterarAlunoModel.getNomealuno());
-			updated.setTurmaaluno(alterarAlunoModel.getTurmaaluno());
+			updated.setNomeAluno(alterarAlunoModel.getNomeAluno());
+			updated.setTurmaAluno(alterarAlunoModel.getTurmaAluno());
 			
 			return this.alunoModelRepository.save(updated).toDto();
 		} else {
@@ -80,16 +80,16 @@ public class AlunoModelService {
 	@Transactional
 	public void delete(int matricula) {
 		
-		List<AlunoMateriaModel> list = this.alunoMateriaRepository.findByAlunoId(matricula);
-		
-		if(list.size() > 0) {
-			for (AlunoMateriaModel alunoMateriaModel : list) {
-				this.alunoMateriaRepository.deleteById(alunoMateriaModel.getId());
-			}
-		}
+//		List<AlunoMateriaModel> list = this.alunoMateriaRepository.findByAlunoId(matricula);
+//		
+//		if(list.size() > 0) {
+//			for (AlunoMateriaModel alunoMateriaModel : list) {
+//				this.alunoMateriaRepository.deleteById(alunoMateriaModel.getId());
+//			}
+//		}
 		
 		//this.enderecoRepository.deleteByAluno(matricula);		
-		this.enderecoRepository.deleteByAlunoMatricula(matricula);
+		this.enderecoRepository.deleteByAlunoMatriculaAluno(matricula);
 		
 		//this.alunoRepository.delete(matricula);
 		this.alunoModelRepository.deleteById(matricula);
@@ -108,8 +108,7 @@ public class AlunoModelService {
 				}
 		);
 		
-		return pageDTO;
-		
+		return pageDTO;		
 	}
 	
 }

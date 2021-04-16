@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import br.com.brq.models.EscolaModel;
 
 
-public interface EscolaModelRepository extends JpaRepository<EscolaModel, Integer>{
+public interface EscolaRepository extends JpaRepository<EscolaModel, Integer>{
 	@Query (value = "SELECT * FROM escola where nome like %:nome%", nativeQuery = true)
 	
 	

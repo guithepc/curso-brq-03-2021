@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.brq.dtos.AlunoDTO;
 import br.com.brq.dtos.MateriaDTO;
-import br.com.brq.services.AlunoModelService;
+import br.com.brq.services.AlunoService;
 
 @RequestMapping("alunos")
 @RestController
@@ -27,7 +27,7 @@ import br.com.brq.services.AlunoModelService;
 public class AlunoController {
 	
 	@Autowired
-	private AlunoModelService alunoModelService;
+	private AlunoService alunoModelService;
 	
 	@GetMapping("")
 	public List<AlunoDTO> findAll(){

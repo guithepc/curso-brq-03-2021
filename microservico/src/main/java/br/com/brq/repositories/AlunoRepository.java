@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import br.com.brq.models.AlunoModel;
 
 @Repository
-public interface AlunoModelRepository extends JpaRepository<AlunoModel, Integer> {
+public interface AlunoRepository extends JpaRepository<AlunoModel, Integer> {
 
 	@Modifying
 	@Transactional
@@ -20,5 +20,5 @@ public interface AlunoModelRepository extends JpaRepository<AlunoModel, Integer>
 	void delete(int aluno);
 	
 	
-	List<AlunoModel> findByNomeContains(String nomealuno);
+	List<AlunoModel> findByNomeAlunoContains(String nomealuno);
 }

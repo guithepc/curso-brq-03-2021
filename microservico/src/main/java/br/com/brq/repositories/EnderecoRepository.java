@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import br.com.brq.models.EnderecoModel;
 
 @Repository
-public interface EnderecoModelRepository extends JpaRepository<EnderecoModel, Integer>  {
+public interface EnderecoRepository extends JpaRepository<EnderecoModel, Integer>  {
 
 	@Modifying
 	@Transactional
@@ -21,7 +21,7 @@ public interface EnderecoModelRepository extends JpaRepository<EnderecoModel, In
 	
 	void deleteByAluno(@Param("aluno") int aluno);
 	
-	void deleteByAlunoMatricula(int id);
+	void deleteByAlunoMatriculaAluno(int id);
 	
 	List<EnderecoModel> findByLogradouroContains(String logradouro);
 	

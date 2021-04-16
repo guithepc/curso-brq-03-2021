@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 
 import br.com.brq.dtos.EnderecoDTO;
 import br.com.brq.models.EnderecoModel;
-import br.com.brq.repositories.EnderecoModelRepository;
+import br.com.brq.repositories.EnderecoRepository;
 
 @Service
-public class EnderecoModelService {
+public class EnderecoService {
 	
 	@Autowired
-	private EnderecoModelRepository enderecoModelRepository;
+	private EnderecoRepository enderecoModelRepository;
 	
 	
 	public List<EnderecoDTO> findAll(){
