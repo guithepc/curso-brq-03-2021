@@ -1,0 +1,25 @@
+<p>home works!</p>
+
+<table *ngIf="alunos.length > 1">
+    <tr>
+        <th>Matricula</th>
+        <th>Nome</th>
+        <th>Turma</th>
+        <th>Ação</th>
+    </tr>
+
+    <tr *ngFor="let a of alunos">
+        <td>{{a.matriculaAluno}}</td>
+        <td>{{a.nomeAluno}}</td>
+        <td>{{a.turmaAluno}}</td>
+        <td > <button (click) = "onAlunoCLick(a.matriculaAluno)">Selecione</button> </td>
+    </tr>
+    
+</table>
+
+<button (click)="onEmitirEventoClick()"> Emitir evento</button>
+
+<app-aluno-detalhe [aluno]="alunoDetalhe">
+
+</app-aluno-detalhe>
+

@@ -5,6 +5,7 @@ import { Component, ElementRef } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {//aqui fica o TYPESCRIPT
   public title : string = 'frontend';
 
@@ -29,5 +30,9 @@ export class AppComponent {//aqui fica o TYPESCRIPT
     console.log(valor);
     this.nome = valor;
     // alert('aaaaa')
+  }
+
+  public receiveEmitirEvento(e){
+    console.log(e);
   }
 }
