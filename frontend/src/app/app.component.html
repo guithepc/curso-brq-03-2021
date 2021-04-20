@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <h1>BRQ</h1>
 
 {{ title }} 
@@ -66,6 +68,12 @@
     [message]="'Digite uma turma válida'">
       
     </app-field-error>
+
+    <app-field-debug
+    [field]="meuForm.get('turmaAluno')"
+    >
+      
+    </app-field-debug>
   
     <div class = "mb-3">
       <button type="submit" class="btn btn-dark" [disabled]="!meuForm.valid" >Submit</button>

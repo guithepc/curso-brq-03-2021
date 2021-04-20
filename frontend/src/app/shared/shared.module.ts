@@ -3,16 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FieldErrorComponent } from './field-error/field-error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { FieldDebugComponent } from './field-debug/field-debug.component';
 
 
 
 @NgModule({
   declarations: [
-    FieldErrorComponent
+    FieldErrorComponent,
+    NavbarComponent,
+    FieldDebugComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    AppRoutingModule,
     FormsModule,
     HttpClientModule
   ],
@@ -20,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     FieldErrorComponent,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NavbarComponent,
+    FieldDebugComponent
   ]
 })
 export class SharedModule { }
