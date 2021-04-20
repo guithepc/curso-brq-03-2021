@@ -8,11 +8,11 @@
 </div>
 
 <!-- quando clicar chama um metodo -->
-<button (click)="onMeuBotaoClick()" [disabled]="isDesabilitado"> Botão </button>
+<button class="btn btn-primary" (click)="onMeuBotaoClick()" [disabled]="isDesabilitado"> Botão </button>
 
 <br>
 
-<input (keyup) ="capturarDados($event.target.value)"/>
+<input class ="form-control" (keyup) ="capturarDados($event.target.value)"/>
 
 <p>{{ nome  }}</p>
 
@@ -38,3 +38,39 @@
   
 </app-home>
 
+<br>
+<br>
+<h3>Cadastro de alunos</h3>
+<form [formGroup]="meuForm"  (submit)="onSubmit()">
+
+  <div class="ml-5">
+    <div class="mb-3" class="mr-5">
+      <label for="nomeAluno" class="form-label">Nome do aluno</label>
+      <input type="text" class="form-control" id="pegandoNomeAluno" formControlName="nomeAluno">
+    </div>
+    
+    <app-field-error 
+    [isShow]="isValid('nomeAluno')"
+    [message]="'Digite um nome válida'">
+      
+    </app-field-error>
+    
+
+    <div class="mb-3" class="mr-5">
+      <label for="turmaAluno" class="form-label">Turma do aluno</label>
+      <input type="text"  class="form-control" id="pegandoTurmaAluno"  formControlName="turmaAluno">
+    </div>
+
+    <app-field-error 
+    [isShow]="isValid('turmaAluno')"
+    [message]="'Digite uma turma válida'">
+      
+    </app-field-error>
+  
+    <div class = "mb-3">
+      <button type="submit" class="btn btn-dark" [disabled]="!meuForm.valid" >Submit</button>
+    </div>
+  </div>
+  
+  
+</form>
