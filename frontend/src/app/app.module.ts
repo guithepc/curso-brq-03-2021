@@ -7,21 +7,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimeiroComponent } from './primeiro/primeiro.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FieldErrorComponent } from './field-error/field-error.component';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    PrimeiroComponent,
-    FieldErrorComponent
+    PrimeiroComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     AlunoModule,
-    NgbModule,
-    ReactiveFormsModule
+    NgbModule,   
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
