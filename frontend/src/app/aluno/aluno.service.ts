@@ -20,5 +20,11 @@ export class AlunoService {
     return this.httpService.post("http://localhost:8081/alunos", newAluno);
   }
 
-  
+  public delete (idAluno){
+    return this.httpService.delete("http://localhost:8081/alunos/" +  idAluno)
+  }
+
+  public update(id_aluno, newAluno){
+    return this.httpService.patch(`http://localhost:8081/alunos/${id_aluno}`, newAluno);
+  }
 }

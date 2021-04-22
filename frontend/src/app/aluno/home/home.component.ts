@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   @Output()
   public emitirEvento : EventEmitter<string> = new EventEmitter<string>();
 
+  @Input()
   public alunoDetalhe : any;
 
   constructor( private alunoService : AlunoService )    

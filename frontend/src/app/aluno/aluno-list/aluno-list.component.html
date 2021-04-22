@@ -1,11 +1,19 @@
 
-<div class="row float-right mb-3 mt-3">
+<div class="row float-left mb-3 mt-3">
     <a class="btn btn-success" [routerLink]="['/aluno-form']">
         Novo Aluno
 
     </a>
 </div>
-<table *ngIf="alunos.length > 1" class="table">
+
+
+<!-- <div class="row float-right mb-3 mt-3">
+    <button (click)="onDelete()">
+
+    </button>
+</div> -->
+
+<table class="table">
     <tr>
         <th>Matricula</th>
         <th>Nome</th>
@@ -17,7 +25,11 @@
         <td>{{a.matriculaAluno}}</td>
         <td>{{a.nomeAluno}}</td>
         <td>{{a.turmaAluno}}</td>
-        <td > <button class="btn btn-primary"(click) = "onAlunoCLick(a.matriculaAluno)">Selecione</button> </td>
+        <td > 
+            <button class="btn btn-primary mr-3"(click) = "onAlunoClick(a.matriculaAluno)">Selecione</button>
+            <a class="btn btn-warning mr-3"[routerLink]="['/aluno-form', a.matriculaAluno]">Editar</a>  
+            <button class="btn btn-danger" (click) = "onDeleteClick(a.matriculaAluno)"> Deletar</button> 
+        </td>
     </tr>
     
 </table>

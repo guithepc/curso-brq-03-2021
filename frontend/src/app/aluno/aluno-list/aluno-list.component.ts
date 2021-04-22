@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlunoService } from '../aluno.service';
 
 @Component({
@@ -16,25 +16,35 @@ export class AlunoListComponent implements OnInit {
           this.alunos = data;    
     }
    */
-    public alunos : any = [];  
+    
+    public alunos : any = []; 
+
+    
     public alunoDetalhe : any;
+
+    public alunoDelete : any;
   
-    constructor( private alunoService : AlunoService )    
+    constructor( private alunoService : AlunoService )   
     {   
         
-        this.alunoService.getAll()
-        .subscribe(
-          (data) => {
-            console.log(data);
-            this.alunos = data;    
-          }
-        );
+        
+      this.getAll();
     }
   
     ngOnInit(): void {
       
     }
         
+    getAll(){
+      this.alunoService.getAll()
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.alunos = data;    
+        }
+      );
+    }
+
     onAlunoClick(id_aluno){
       //1-)buscar informação do aluno pelo GET ONE
       this.alunoService.getOne( id_aluno )
@@ -45,4 +55,14 @@ export class AlunoListComponent implements OnInit {
         )
     }
 
+    onDeleteClick(idAluno){
+      this.alunoService.delete(idAluno)
+      .subscribe(
+        (data) => {
+          this.getAll()
+ 
+        }
+      )
+    }
+  
 }
