@@ -1,0 +1,29 @@
+
+<div class="row float-right mb-3 mt-3">
+    <a class="btn btn-success" [routerLink]="['/aluno-form']">
+        Novo Aluno
+
+    </a>
+</div>
+<table *ngIf="alunos.length > 1" class="table">
+    <tr>
+        <th>Matricula</th>
+        <th>Nome</th>
+        <th>Turma</th>
+        <th>Ação</th>
+    </tr>
+
+    <tr *ngFor="let a of alunos">
+        <td>{{a.matriculaAluno}}</td>
+        <td>{{a.nomeAluno}}</td>
+        <td>{{a.turmaAluno}}</td>
+        <td > <button class="btn btn-primary"(click) = "onAlunoCLick(a.matriculaAluno)">Selecione</button> </td>
+    </tr>
+    
+</table>
+
+
+
+<app-aluno-detalhe [aluno]="alunoDetalhe">
+
+</app-aluno-detalhe>

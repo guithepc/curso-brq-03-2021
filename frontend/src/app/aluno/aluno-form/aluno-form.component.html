@@ -1,0 +1,44 @@
+<form [formGroup]="meuForm"  (submit)="onSubmit()">
+
+    <div class="ml-5">
+      <div class="mb-3" class="mr-5">
+        <label for="nomeAluno" class="form-label">Nome do aluno</label>
+        <input type="text" class="form-control" id="pegandoNomeAluno" formControlName="nomeAluno">
+      </div>
+      
+      <app-field-error 
+      [isShow]="isValid('nomeAluno')"
+      [message]="'Digite um nome válido'">
+        
+      </app-field-error>
+      
+      <app-field-debug
+      [field]="meuForm.get('nomeAluno')"
+      >
+        
+      </app-field-debug>
+  
+      <div class="mb-3" class="mr-5">
+        <label for="turmaAluno" class="form-label">Turma do aluno</label>
+        <input type="text"  class="form-control" id="pegandoTurmaAluno"  formControlName="turmaAluno">
+      </div>
+  
+      <app-field-error 
+      [isShow]="isValid('turmaAluno')"
+      [message]="'Digite uma turma válida'">
+        
+      </app-field-error>
+  
+      <app-field-debug
+      [field]="meuForm.get('turmaAluno')"
+      >
+        
+      </app-field-debug>
+    
+      <div class = "mb-3">
+        <button type="submit" class="btn btn-dark" [disabled]="!meuForm.valid" >Submit</button>
+      </div>
+    </div>
+    
+    
+  </form>
