@@ -62,13 +62,13 @@ export class AppComponent {//aqui fica o TYPESCRIPT
         turmaAluno : this.meuForm.value.turmaAluno
       };
      console.log(newAluno);
-    //   this.alunoService.save(newAluno).subscribe(
-    //     (data) => {
-    //      console.log(data);
-    //      this.alunoo=data;
+       this.alunoService.save(newAluno).subscribe(
+         (data) => {
+          console.log(data);
+          this.alunoo=data;
         
-    //    }
-    //  );
+        }
+      );
   }
 
   public isValid(fieldName) : boolean{
