@@ -1,5 +1,6 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MateriaServiceService } from 'src/app/materia/materia-service.service';
 
 import { AlunoService } from '../aluno.service';
 
@@ -28,7 +29,10 @@ export class HomeComponent implements OnInit {
   @Input()
   public alunoDetalhe : any;
 
-  constructor( private alunoService : AlunoService )    
+  @Input()
+  public materiaDetalhe : any;
+
+  constructor( private alunoService : AlunoService, private materiaService :MateriaServiceService )    
   {   
       
       this.alunoService.getAll()
@@ -38,6 +42,8 @@ export class HomeComponent implements OnInit {
           this.alunos = data;    
         }
       );
+
+      this.materiaService
   }
 
   ngOnInit(): void {
@@ -57,12 +63,17 @@ export class HomeComponent implements OnInit {
           this.alunoDetalhe = data;
         }
       )
+  }
 
-    //2-)armazenar resultado em uma variável
-
-    //3-) passar a variável do passo 2 via INPUT PROPERTIES para aluno-detalhe
-
-    //4) criar HTML do aluno-detalhe com as variávei que recebem os valores do pai
+  onMateriaCLick(id_materia){
+    //1-)buscar informação do aluno pelo GET ONE
+    this.alunoService.getOne( id_materia )
+      .subscribe(
+        (data) => {
+          console.log(data)
+          this.materiaDetalhe = data;
+        }
+      )
   }
 
 }

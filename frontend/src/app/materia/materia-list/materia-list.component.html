@@ -1,0 +1,39 @@
+<div class="row float-left mb-3 mt-3">
+    <a class="btn btn-success"  [routerLink]="['/materia-form']">
+        Nova matéria
+
+    </a>
+</div>
+
+
+<!-- <div class="row float-right mb-3 mt-3">
+    <button (click)="onDelete()">
+
+    </button>
+</div> -->
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Professor</th>
+        <th>Ação</th>
+    </tr>
+
+    <tr *ngFor="let a of materias">
+        <td>{{a.id}}</td>
+        <td>{{a.nome}}</td>
+        <td>{{a.professor}}</td>
+        
+        <td > 
+            <button class="btn btn-primary mr-3"(click) = "onMateriaClick(a.id)">Selecione</button>
+            <a class="btn btn-warning mr-3"[routerLink]="['/materia-form', a.id]">Editar</a>  
+            <button class="btn btn-danger" (click) = "onDeleteClick(a.id)"> Deletar</button> 
+        </td>
+    </tr>
+    
+</table>
+
+<app-materia-detalhe [materia]="materiaDetalhe">
+
+</app-materia-detalhe>
