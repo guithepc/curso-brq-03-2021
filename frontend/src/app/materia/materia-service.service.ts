@@ -6,8 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class MateriaServiceService {
 
+  
+  uri : string = 'http://localhost:8081/materias';
+  
+  
   constructor(private httpService: HttpClient) { }
-
+  
   public getAll(){
     return this.httpService.get("http://localhost:8081/materias");
   }
@@ -26,5 +30,9 @@ export class MateriaServiceService {
 
   public update(id_materia, newMateria){
     return this.httpService.patch(`http://localhost:8081/materias/${id_materia}`, newMateria);
+  }
+
+  public getPagination(pagina, registrosPorPagina = 2){
+    return this.httpService.get(`${this.uri}/paginacao?pagina=${pagina}&registros=${registrosPorPagina}`);
   }
 }

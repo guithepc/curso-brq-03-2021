@@ -1,8 +1,7 @@
 
 <div class="row float-left mb-3 mt-3">
-    <a class="btn btn-success" [routerLink]="['/aluno-form']">
+    <a class="btn btn-success" [routerLink]="['/alunos/aluno-form']">
         Novo Aluno
-
     </a>
 </div>
 
@@ -13,21 +12,21 @@
     </button>
 </div> -->
 
-<table class="table">
-    <tr>
+<table class="table table-hover">
+    <tr class="thead-dark">
         <th>Matricula</th>
         <th>Nome</th>
         <th>Turma</th>
-        <th>Ação</th>
+        <th th class="text-center" >Ação</th>
     </tr>
 
     <tr *ngFor="let a of alunos">
         <td>{{a.matriculaAluno}}</td>
         <td>{{a.nomeAluno}}</td>
         <td>{{a.turmaAluno}}</td>
-        <td > 
-            <button class="btn btn-primary mr-3"(click) = "onAlunoClick(a.matriculaAluno)">Selecione</button>
-            <a class="btn btn-warning mr-3"[routerLink]="['/aluno-form', a.matriculaAluno]">Editar</a>  
+        <td align="center"> 
+            <button class="btn btn-primary ml-10 mr-3"(click) = "onAlunoClick(a.matriculaAluno)">Selecionar</button>
+            <a class="btn btn-warning mr-3"[routerLink]="['/alunos/aluno-form', a.matriculaAluno]">Editar</a>  
             <button class="btn btn-danger" (click) = "onDeleteClick(a.matriculaAluno)"> Deletar</button> 
         </td>
     </tr>

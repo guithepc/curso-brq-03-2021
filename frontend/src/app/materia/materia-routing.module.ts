@@ -4,7 +4,7 @@ import { MateriaFormComponent } from './materia-form/materia-form.component';
 import { MateriaListComponent } from './materia-list/materia-list.component';
 
 const routes: Routes = [
-  {path: 'materias', component: MateriaListComponent},
+  {path: '', component: MateriaListComponent},
   {path: 'materia-form', component : MateriaFormComponent},
   {path: 'materia-form/:id', component: MateriaFormComponent}
 ];

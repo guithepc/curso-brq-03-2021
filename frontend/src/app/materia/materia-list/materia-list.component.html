@@ -1,5 +1,5 @@
 <div class="row float-left mb-3 mt-3">
-    <a class="btn btn-success"  [routerLink]="['/materia-form']">
+    <a class="btn btn-success"  [routerLink]="['/materias/materia-form']">
         Nova matéria
 
     </a>
@@ -12,28 +12,48 @@
     </button>
 </div> -->
 
-<table class="table">
-    <tr>
+<table class="table table-hover">
+    <tr class="thead-dark">
         <th>ID</th>
         <th>Nome</th>
         <th>Professor</th>
-        <th>Ação</th>
+        <th th class="text-center" >Ação</th>
     </tr>
 
-    <tr *ngFor="let a of materias">
-        <td>{{a.id}}</td>
-        <td>{{a.nome}}</td>
-        <td>{{a.professor}}</td>
+    <tr *ngFor="let a of materias  | paginate: { id: 'paginacao', itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+        <td>{{a?.id}}</td>
+        <td>{{a?.nome}}</td>
+        <td>{{a?.professor}}</td>
         
-        <td > 
-            <button class="btn btn-primary mr-3"(click) = "onMateriaClick(a.id)">Selecione</button>
-            <a class="btn btn-warning mr-3"[routerLink]="['/materia-form', a.id]">Editar</a>  
+        <td align="center"> 
+            <!-- <button class="btn btn-primary mr-3"(click) = "onMateriaClick(a.id)">Selecionar</button> -->
+            <a class="btn btn-warning mr-3"[routerLink]="['/materias/materia-form', a.id]">Editar</a>  
             <button class="btn btn-danger" (click) = "onDeleteClick(a.id)"> Deletar</button> 
         </td>
     </tr>
     
 </table>
 
+
+<div class="row justify-content-md-center">
+
+    <pagination-controls  id="paginacao"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      maxSize="9"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel="Anterior"
+                      nextLabel="Próximo"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+
+</div>
+
+<!-- 
 <app-materia-detalhe [materia]="materiaDetalhe">
 
-</app-materia-detalhe>
+</app-materia-detalhe> -->
