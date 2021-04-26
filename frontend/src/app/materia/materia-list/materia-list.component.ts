@@ -11,7 +11,7 @@ export class MateriaListComponent implements OnInit {
     public materias : any = []; 
 
     
-    public pageSize : number = 3;
+    public pageSize : number = 5;
     public p : number = 1 ;
     public paginaRest : number = this.p - 1;
     public total : number = 0 ;
