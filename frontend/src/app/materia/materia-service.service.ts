@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class MateriaServiceService {
 
   
-  uri : string = 'http://localhost:8081/materias';
+  uri : string = `${environment.API_URI}/materias`;
   
   
   constructor(private httpService: HttpClient) { }
