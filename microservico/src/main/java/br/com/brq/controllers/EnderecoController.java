@@ -23,7 +23,7 @@ import br.com.brq.services.EnderecoService;
 
 @RequestMapping("enderecos")
 @RestController
-@CrossOrigin(origins ="*")
+
 public class EnderecoController {
 
 	@Autowired

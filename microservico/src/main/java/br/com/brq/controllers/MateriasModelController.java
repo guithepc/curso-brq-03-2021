@@ -24,7 +24,6 @@ import br.com.brq.services.MateriaService;
 
 @RequestMapping("materias")
 @RestController
-@CrossOrigin(origins ="*")
 public class MateriasModelController {
 	
 	@Autowired

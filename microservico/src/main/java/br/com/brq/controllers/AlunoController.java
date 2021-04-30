@@ -24,7 +24,7 @@ import br.com.brq.services.AlunoService;
 
 @RequestMapping("alunos")
 @RestController
-@CrossOrigin(origins ="*")
+
 
 public class AlunoController {
 	

@@ -97,6 +97,26 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		
+		<!-- Apache Camel -->
+
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-spring-boot-starter</artifactId>
+			<version>3.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jackson</artifactId>
+			<version>3.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-http-starter</artifactId>
+			<version>3.5.0</version>
+		</dependency>
+		
 		
 	</dependencies>
 	

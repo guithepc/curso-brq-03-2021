@@ -24,7 +24,7 @@ import br.com.brq.services.EscolaServices;
 
 @RequestMapping("escolas")
 @RestController
-@CrossOrigin(origins ="*")
+
 public class EscolaController {
 	
 	@Autowired
